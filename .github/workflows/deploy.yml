@@ -1,20 +1,30 @@
+name: Sync to Hugging Face Hub
+
 on:
+  # This action runs every time you push to your 'main' branch
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - name: 🔎 Checkout kode (non-shallow)
-        uses: actions/checkout@v3
+      # This step checks out a copy of your repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Ambil seluruh history, penting!
+          fetch-depth: 0
 
-      - name: 🔁 Push ke Hugging Face
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
+      # This is the action that pushes your code to the Hub
+      - name: Push to Hub
+        uses: huggingface/hub-action@v2
+        with:
+          # Your specific Hugging Face Space ID
+          repo_id: "HelmGasLPJ/praktekkomputasiawan"
 
-          git remote add hf https://yudarahma:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/HelmGasLPJ/praktekkomputasiawan
-          git push -f hf main
+          # The token you stored in GitHub secrets
+          token: ${{ secrets.HUGGING_FACE_TOKEN }}
+          
+          # The type of repository on the Hub
+          repo_type: space
