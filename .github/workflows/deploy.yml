@@ -1,7 +1,6 @@
 name: Sync to Hugging Face Hub
 
 on:
-  # This action runs every time you push to your 'main' branch
   push:
     branches:
       - main
@@ -10,23 +9,14 @@ jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      # This step checks out a copy of your repository
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # This is the action that pushes your code to the Hub
       - name: Push to Hub
-        # Make sure this line is perfect
-        uses: huggingface/hub-action@v2 
+        uses: huggingface/hub-action@v2
         with:
           repo_id: "HelmGasLPJ/praktekkomputasiawan"
           token: ${{ secrets.HUGGING_FACE_TOKEN }}
-          repo_type: space
-
-          # The token you stored in GitHub secrets
-          token: ${{ secrets.HUGGING_FACE_TOKEN }}
-          
-          # The type of repository on the Hub
           repo_type: space
