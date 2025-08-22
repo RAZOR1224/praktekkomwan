@@ -18,10 +18,12 @@ jobs:
 
       # This is the action that pushes your code to the Hub
       - name: Push to Hub
-        uses: huggingface/hub-action@v2
+        # Make sure this line is perfect
+        uses: huggingface/hub-action@v2 
         with:
-          # Your specific Hugging Face Space ID
           repo_id: "HelmGasLPJ/praktekkomputasiawan"
+          token: ${{ secrets.HUGGING_FACE_TOKEN }}
+          repo_type: space
 
           # The token you stored in GitHub secrets
           token: ${{ secrets.HUGGING_FACE_TOKEN }}
