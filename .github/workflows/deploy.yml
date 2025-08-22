@@ -1,22 +1,22 @@
-name: Sync to Hugging Face Hub
+name: 🚀 Deploy ke Hugging Face
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  sync-to-hub:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: 🔎 Checkout kode (non-shallow)
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Ambil seluruh history, penting!
 
-      - name: Push to Hub
-        uses: huggingface/hub-action@v2
-        with:
-          repo_id: "HelmGasLPJ/praktekkomputasiawan"
-          token: ${{ secrets.HUGGING_FACE_TOKEN }}
-          repo_type: space
+      - name: 🔁 Push ke Hugging Face
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+          git remote add hf https://Mandr1:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/HelmGasLPJ/praktekkomputasiawan
+          git push -f hf main
