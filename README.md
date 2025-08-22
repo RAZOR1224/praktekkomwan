@@ -1,8 +1,16 @@
-title: Praktekkomputasiawan
-emoji: 👁
+
+---
+title: Praktekcloud1
+emoji: 👀
+license: mit
 colorFrom: blue
-colorTo: pink
+colorTo: green
 sdk: docker
+app_port: 7860
 pinned: false
-license: other
-short_description: Puraketeku Komputasu Awanu
+short_description: Ini demo belajar tentang PaaS
+---
+
+# SisfoCloud
+
+Website ini di-host menggunakan Docker di Hugging Face Spaces.
